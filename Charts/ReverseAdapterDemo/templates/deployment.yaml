@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.appName }}
+  labels:
+    app: {{ .Values.appName }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ .Values.appName }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.appName }}
+    spec:
+      containers:
+      - name: demo
+        image: rjrdrg/robust_contract_evolution:reverse_{{ .Values.appVersion }}
+        env: 
+        - name: TARGET_APPS
+          value: {{ .Values.targetApps }}
+        - name: TARGET_VERSION
+          value: {{ .Values.appVersion }}
+        - name: SERVER_PORT
+          value: "8080"
+        ports:
+        - containerPort: 8080
+          name: {{ .Values.appVersion }}
+      - name: adapter
+        image: rjrdrg/robust_contract_evolution:reverse_adapter_{{ .Values.adapterVersion }}_{{ .Values.appVersion }}
+        env:
+        - name: TARGET_HOST
+          value: "localhost"
+        - name: TARGET_PORT
+          value: "8080"
+        - name: SERVER_PORT
+          value: "8082"
+        ports:
+        - containerPort: 8082
+          name: {{ .Values.adapterVersion }}

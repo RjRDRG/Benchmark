@@ -1,0 +1,13 @@
+FROM artilleryio/artillery:latest
+LABEL maintainer="team@artillery.io"
+
+RUN apk -U upgrade \
+  && apk add --no-cache git
+
+WORKDIR /home/node/artillery
+
+RUN npm \
+    install \
+    artillery-plugin-publish-metrics@2.0.0 --save
+
+ENTRYPOINT ["/home/node/artillery/bin/artillery"]

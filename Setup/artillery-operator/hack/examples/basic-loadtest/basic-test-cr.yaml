@@ -1,0 +1,17 @@
+apiVersion: loadtest.artillery.io/v1alpha1
+kind: LoadTest
+metadata:
+  name: basic-test
+  namespace: default
+  labels:
+    "artillery.io/test-name": basic-test
+    "artillery.io/component": loadtest
+    "artillery.io/part-of": loadtest
+
+spec:
+  # Add fields here
+  count: 2
+  environment: dev
+  testScript:
+    config:
+      configMap: test-script
