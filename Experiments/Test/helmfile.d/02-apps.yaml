@@ -14,9 +14,9 @@ releases:
   - name: targetApps
     value: app3, app4
   - name: requests.memory
-    value: 500M
+    value: 500
   - name: limits.memory
-    value: 2000M
+    value: 2000
   - name: requests.cpu
     value: 0.1
   - name: limits.cpu
@@ -36,9 +36,9 @@ releases:
   - name: targetApps
     value: app3, app4
   - name: requests.memory
-    value: 500M
+    value: 500
   - name: limits.memory
-    value: 2000M
+    value: 2000
   - name: requests.cpu
     value: 0.1
   - name: limits.cpu
@@ -58,9 +58,9 @@ releases:
   - name: targetApps
     value: app1, app2
   - name: requests.memory
-    value: 500M
+    value: 500
   - name: limits.memory
-    value: 2000M
+    value: 2000
   - name: requests.cpu
     value: 0.1
   - name: limits.cpu
@@ -80,9 +80,9 @@ releases:
   - name: targetApps
     value: app1, app2
   - name: requests.memory
-    value: 500M
+    value: 500
   - name: limits.memory
-    value: 2000M
+    value: 2000
   - name: requests.cpu
     value: 0.1
   - name: limits.cpu

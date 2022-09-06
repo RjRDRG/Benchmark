@@ -30,11 +30,11 @@ spec:
           name: {{ .Values.appVersion }}
         resources:
           requests:
-            memory: {{ div .Values.requests.memory 2 }}
-            cpu: {{ div .Values.requests.cpu 2 }}
+            memory: {{ divf .Values.requests.memory 2 }}M
+            cpu: {{ divf .Values.requests.cpu 2 }}
           limits:
-            memory: {{ div .Values.limits.memory 2 }}
-            cpu: {{ div .Values.limits.cpu 2 }}
+            memory: {{ divf .Values.limits.memory 2 }}M
+            cpu: {{ divf .Values.limits.cpu 2 }}
       - name: adapter
         image: rjrdrg/robust_contract_evolution:reverse_adapter_{{ .Values.adapterVersion }}_{{ .Values.appVersion }}
         env:
@@ -49,8 +49,8 @@ spec:
           name: {{ .Values.adapterVersion }}
         resources:
           requests:
-            memory: {{ div .Values.requests.memory 2 }}
-            cpu: {{ div .Values.requests.cpu 2 }}
+            memory: {{ divf .Values.requests.memory 2 }}M
+            cpu: {{ divf .Values.requests.cpu 2 }}
           limits:
-            memory: {{ div .Values.limits.memory 2 }}
-            cpu: {{ div .Values.limits.cpu 2 }}
+            memory: {{ divf .Values.limits.memory 2 }}M
+            cpu: {{ divf .Values.limits.cpu 2 }}
