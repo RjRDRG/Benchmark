@@ -2,16 +2,4 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
-appName: null
-
-appVersion: null
-
-adapterVersion: null
-
-replicaCount: 1
-
-targetApps: null
-
-service:
-  type: ClusterIP
-  port: 80
+appsVersion: null

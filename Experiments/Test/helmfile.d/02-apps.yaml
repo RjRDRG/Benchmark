@@ -1,7 +1,7 @@
 releases:
 - name: app1
   namespace: apps
-  chart: ../../../Charts/ReverseAdapterDemo
+  chart: ../../../Charts/ReverseAdapterDemoPod
   set:
   - name: appName
     value: app1
@@ -13,9 +13,17 @@ releases:
     value: 1
   - name: targetApps
     value: app3, app4
+  - name: requests.memory
+    value: 500M
+  - name: limits.memory
+    value: 2000M
+  - name: requests.cpu
+    value: 0.1
+  - name: limits.cpu
+    value: 0.75
 - name: app2
   namespace: apps
-  chart: ../../../Charts/ReverseAdapterDemo
+  chart: ../../../Charts/ReverseAdapterDemoPod
   set:
   - name: appName
     value: app2
@@ -27,9 +35,17 @@ releases:
     value: 1
   - name: targetApps
     value: app3, app4
+  - name: requests.memory
+    value: 500M
+  - name: limits.memory
+    value: 2000M
+  - name: requests.cpu
+    value: 0.1
+  - name: limits.cpu
+    value: 0.75
 - name: app3
   namespace: apps
-  chart: ../../../Charts/ReverseAdapterDemo
+  chart: ../../../Charts/ReverseAdapterDemoPod
   set:
   - name: appName
     value: app3
@@ -41,9 +57,17 @@ releases:
     value: 1
   - name: targetApps
     value: app1, app2
+  - name: requests.memory
+    value: 500M
+  - name: limits.memory
+    value: 2000M
+  - name: requests.cpu
+    value: 0.1
+  - name: limits.cpu
+    value: 0.75
 - name: app4
   namespace: apps
-  chart: ../../../Charts/ReverseAdapterDemo
+  chart: ../../../Charts/ReverseAdapterDemoPod
   set:
   - name: appName
     value: app4
@@ -55,3 +79,11 @@ releases:
     value: 1
   - name: targetApps
     value: app1, app2
+  - name: requests.memory
+    value: 500M
+  - name: limits.memory
+    value: 2000M
+  - name: requests.cpu
+    value: 0.1
+  - name: limits.cpu
+    value: 0.75

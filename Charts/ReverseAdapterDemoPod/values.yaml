@@ -1,0 +1,17 @@
+appName: null
+
+appVersion: null
+
+adapterVersion: null
+
+replicaCount: 1
+
+targetApps: null
+
+requests:
+  memory: null
+  cpu: null
+
+limits:
+  memory: null
+  cpu: null
