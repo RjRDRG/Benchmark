@@ -18,4 +18,8 @@ source ./operator-deploy.sh
 
 kubectl -n artillery-operator-system set env deployments/artillery-operator-controller-manager ARTILLERY_DISABLE_TELEMETRY=true
 
+sleep 30
+
+kubectl create clusterrolebinding artillery-cluster-admin --clusterrole=cluster-admin --serviceaccount=artillery-operator-system:artillery-operator-controller-manager
+
 cd ..

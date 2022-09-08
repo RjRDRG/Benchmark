@@ -10,10 +10,12 @@ spec:
   selector:
     matchLabels:
       app: {{ .Values.appName }}
+      version: {{ .Values.appVersion }}
   template:
     metadata:
       labels:
         app: {{ .Values.appName }}
+        version: {{ .Values.appVersion }}
     spec:
       containers:
       - name: demo

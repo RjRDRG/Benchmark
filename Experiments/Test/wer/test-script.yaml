@@ -19,7 +19,7 @@ config:
         pushgateway: "http://prometheus-pushgateway.monitoring:9091"
         prefix: 'artillery_k8s'
         tags:
-          - "load_test_id:basic-test"
+          - "load_test_id:test-378dbbbd-03eb-4d0e-8a66-39033a76d0f3"
           - "type:loadtest"
   phases:
     - duration: 60

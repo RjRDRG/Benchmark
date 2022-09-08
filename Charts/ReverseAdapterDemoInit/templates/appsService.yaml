@@ -4,7 +4,6 @@ metadata:
   name: entry
 spec:
   type: ClusterIP
-  clusterIP: 10.3.50.50
   selector:
     version: {{ .Values.appsVersion }}
   ports:
