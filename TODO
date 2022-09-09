@@ -1,0 +1,9 @@
+
+
+Fix "application/json" in adapter generation
+Fix "headerName" in evolution script to be lowercase
+
+publish updated demo images
+
+the connection beetween adapter and app is working
+solve nullpointer exception in line 79 adapter - String responseBody = "{\"p1_v0\":\"" + _body.get("p1_v1").textValue() + "\",\"p2_v0\":\"" + _body.get("p2_v1").textValue() + "\",\"p3_v0\":\"" + _body.get("p3_v1").textValue() + "\",\"p4_v0\":\"" + _body.get("p4_v1").textValue() + "\",\"p5_v0\":\"" + _body.get("p5_v1").textValue() + "\"}";
