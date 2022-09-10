@@ -1,0 +1,7 @@
+prometheus:
+  prometheusSpec:
+    additionalScrapeConfigs:
+    - job_name: pushgateway
+      honor_labels: true
+      static_configs:
+      - targets: [prometheus-pushgateway:9091]
