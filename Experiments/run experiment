@@ -1,5 +1,0 @@
-rename test id
-
-helmfile apply
-kubectl apply -k workload
-

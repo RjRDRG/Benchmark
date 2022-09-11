@@ -19,7 +19,7 @@ config:
         pushgateway: "http://prometheus-pushgateway.monitoring:9091"
         prefix: 'artillery_k8s'
         tags:
-          - "load_test_id:basic-test"
+          - "load_test_id:{{ my_test_job_name }}"
           - "type:loadtest"
   phases:
     - duration: 60
@@ -29,7 +29,7 @@ config:
       arrivalRate: 5
       rampTo: 50
       name: Ramp up load
-    - duration: 600
+    - duration: 300
       arrivalRate: 50
       name: Sustained load
 scenarios:

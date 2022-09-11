@@ -1,10 +1,10 @@
 apiVersion: loadtest.artillery.io/v1alpha1
 kind: LoadTest
 metadata:
-  name: basic-test
+  name: {{ my_test_job_name }}
   namespace: default
   labels:
-    "artillery.io/test-name": basic-test
+    "artillery.io/test-name": {{ my_test_job_name }}
     "artillery.io/component": loadtest
     "artillery.io/part-of": loadtest
 

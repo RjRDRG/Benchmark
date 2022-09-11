@@ -1,2 +1,0 @@
-helmfile destroy
-kubectl delete -f workload
