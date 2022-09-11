@@ -4,7 +4,3 @@ Fix "application/json" in adapter generation
 Fix "headerName" in evolution script to be lowercase
 
 publish updated demo images
-
-the connection beetween adapter and app is working
-
-scrape pushgateway
