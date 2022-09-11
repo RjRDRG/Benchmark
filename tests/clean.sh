@@ -9,7 +9,7 @@ then
   exit 1
 fi
 
-cd ../experiments/$1
+cd ../tmp/$1
 
 cd target
 source ./clean_target.sh
@@ -18,3 +18,6 @@ cd ..
 cd workload
 source ./clean_workload.sh 
 cd ..
+
+cd ..
+rm -r ./$1

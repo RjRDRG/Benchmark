@@ -5,3 +5,6 @@ prometheus:
       honor_labels: true
       static_configs:
       - targets: [prometheus-pushgateway:9091]
+  scrapeInterval: 5s
+  global:
+    scrape_interval: 5s

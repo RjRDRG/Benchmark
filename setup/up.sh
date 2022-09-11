@@ -8,9 +8,15 @@ kubectl create namespace monitoring
 helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
 helm repo update
 
+echo -e "\e[1;42m Installing prometheus-pushgateway \e[0m"
+
 helm install prometheus-pushgateway --atomic prometheus-community/prometheus-pushgateway --namespace monitoring
 
+echo -e "\e[1;42m Installing prometheus-stack \e[0m"
+
 helm install prometheus --atomic prometheus-community/kube-prometheus-stack --namespace monitoring --values prometheus_values.yaml
+
+echo -e "\e[1;42m Installing artillery-operator \e[0m"
 
 cd artillery-operator
 
