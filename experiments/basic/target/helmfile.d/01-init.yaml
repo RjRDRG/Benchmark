@@ -1,7 +1,7 @@
 releases:
 - name: init
   namespace: apps
-  chart: ../../../Charts/ReverseAdapterDemoInit
+  chart: ../../../../charts/ReverseAdapterDemoInit
   set:
   - name: appsVersion
     value: v0

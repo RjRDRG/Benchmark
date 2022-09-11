@@ -3,6 +3,8 @@
 set -o errexit
 set -o posix
 
+TC_GRD=$'\x1B[0;30;42m'
+
 NAME="basic"
 CLEAN=false
 
@@ -30,11 +32,11 @@ cd ../experiments/$NAME
 
 cd target
 
-echo "Deploying target"
-source deploy_target.sh
+echo -e "\e[1;42m Deploying target \e[0m"
+source ./deploy_target.sh
 
-echo "Waiting for target"
-source wait_target.sh
+echo -e "\e[1;42m Waiting for target \e[0m"
+source ./wait_target.sh
 
 cd ..
 
@@ -42,17 +44,18 @@ cd ..
 
 cd workload
 
-DATE=$(date +%Yy%mm%dd_%Hh%Mm%Ss)
+DATE=$(date +%Yy%mm%dd-%Hh%Mm%Ss)
+
+echo -e "\e[1;42m Deploying workload \e[0m"
 
 grep -RiIl "{{ my_test_job_name }}" | xargs sed -i "s|{{ my_test_job_name }}|$DATE|g"
 
-echo "Deploying workload"
-source deploy_workload.sh
+source ./deploy_workload.sh
 
-echo "Waiting for workload"
-source wait_workload.sh
+echo -e "\e[1;42m Waiting for workload \e[0m"
+source ./wait_workload.sh
 
-grep -RiIl "$DATE" | xargs sed -i "s|$DATE|{{ my_test_job_name }}|g"
+grep -RiIl "2022y09m11d_15h39m51s" | xargs sed -i "s|2022y09m11d_15h39m51s|{{ my_test_job_name }}|g"
 
 cd ..
 
@@ -63,16 +66,21 @@ cd metrics
 
 mkdir -p ../../../tests/$NAME/$DATE
 
-source extract.sh "../../../tests/$NAME/$DATE/"
+source ./extract.sh "../../../tests/$NAME/$DATE/"
 
-echo "Metrics extracted"
+echo -e "\e[1;42m Metrics extracted \e[0m"
 
 cd ..
 
 
 
 if $CLEAN ; then
-    echo "Cleaning up experiment"
-    source target/clean_target.sh
-    source workload/clean_workload.sh 
+    echo -e "\e[1;42m Cleaning up experiment \e[0m"
+    cd target
+    source ./clean_target.sh
+    cd ..
+
+    cd workload
+    source ./clean_workload.sh 
+    cd ..
 fi

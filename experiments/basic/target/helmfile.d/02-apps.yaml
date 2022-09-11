@@ -1,7 +1,7 @@
 releases:
 - name: app1
   namespace: apps
-  chart: ../../../Charts/ReverseAdapterDemoPod
+  chart: ../../../../charts/ReverseAdapterDemoPod
   set:
   - name: appName
     value: app1
@@ -23,7 +23,7 @@ releases:
     value: 0.75
 - name: app2
   namespace: apps
-  chart: ../../../Charts/ReverseAdapterDemoPod
+  chart: ../../../../charts/ReverseAdapterDemoPod
   set:
   - name: appName
     value: app2
@@ -45,7 +45,7 @@ releases:
     value: 0.75
 - name: app3
   namespace: apps
-  chart: ../../../Charts/ReverseAdapterDemoPod
+  chart: ../../../../charts/ReverseAdapterDemoPod
   set:
   - name: appName
     value: app3
@@ -67,7 +67,7 @@ releases:
     value: 0.75
 - name: app4
   namespace: apps
-  chart: ../../../Charts/ReverseAdapterDemoPod
+  chart: ../../../../charts/ReverseAdapterDemoPod
   set:
   - name: appName
     value: app4
