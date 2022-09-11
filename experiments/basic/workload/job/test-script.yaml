@@ -23,11 +23,12 @@ config:
           - "type:loadtest"
   phases:
     - duration: 30
-      arrivalCount: {{ my_test_job_min_users }}
+      arrivalRate: {{ my_test_job_min_users }}
       name: Warm up
     - duration: {{ my_test_job_duration }}
-      arrivalCount: {{ my_test_job_max_users }}
-      name: Sustained load
+      arrivalRate: {{ my_test_job_min_users }}
+      rampTo: {{ my_test_job_max_users }}
+      name: Load
 scenarios:
   - name: "procedure"
     flow:

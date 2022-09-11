@@ -5,9 +5,9 @@ set -o posix
 
 NAME="basic"
 CLEAN=false
-DURATION=200
-MIN_USERS=100
-MAX_USERS=10000
+DURATION=60
+MIN_USERS=5
+MAX_USERS=50
 
 while getopts 'cn:d:m:M:' OPTION; do
   case "$OPTION" in
@@ -36,8 +36,10 @@ shift "$(($OPTIND -1))"
 
 
 
+
 cp -a ../experiments/$NAME ../tmp/
 cd ../tmp/$NAME
+
 
 
 
@@ -50,7 +52,6 @@ echo -e "\e[1;42m Waiting for target \e[0m"
 source ./wait_target.sh
 
 cd ..
-
 
 
 
@@ -74,6 +75,7 @@ cd ..
 
 
 
+
 cd metrics
 
 mkdir -p ../../../tests/$NAME/$DATE
@@ -83,6 +85,8 @@ source ./extract.sh "../../../tests/$NAME/$DATE/"
 echo -e "\e[1;42m Metrics extracted \e[0m"
 
 cd ..
+
+
 
 
 if $CLEAN ; then

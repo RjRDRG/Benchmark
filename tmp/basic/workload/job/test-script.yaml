@@ -19,13 +19,13 @@ config:
         pushgateway: "http://prometheus-pushgateway.monitoring:9091"
         prefix: 'artillery_k8s'
         tags:
-          - "load_test_id:2022y09m11d-19h50m41s"
+          - "load_test_id:2022y09m11d-20h18m06s"
           - "type:loadtest"
   phases:
     - duration: 30
       arrivalCount: 100
       name: Warm up
-    - duration: 200
+    - duration: 60
       arrivalCount: 10000
       name: Sustained load
 scenarios:

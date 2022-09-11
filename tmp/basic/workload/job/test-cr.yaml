@@ -1,10 +1,10 @@
 apiVersion: loadtest.artillery.io/v1alpha1
 kind: LoadTest
 metadata:
-  name: 2022y09m11d-19h50m41s
+  name: 2022y09m11d-20h18m06s
   namespace: default
   labels:
-    "artillery.io/test-name": 2022y09m11d-19h50m41s
+    "artillery.io/test-name": 2022y09m11d-20h18m06s
     "artillery.io/component": loadtest
     "artillery.io/part-of": loadtest
 
