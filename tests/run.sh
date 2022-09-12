@@ -6,7 +6,7 @@ set -o posix
 CLEAN=false
 FILE="./test.config"
 
-NAME="basic"
+NAME="reverse"
 DURATION=200
 DURATION_BUFFER=50
 MIN_USERS=10
@@ -39,7 +39,7 @@ PAYLOAD=$(printf '=%.0s' $(seq 1 $(($PAYLOAD_SIZE / 5))))
 
 DATE=$(date +%Yy%mm%dd-%Hh%Mm%Ss)
 
-mkdir -p ../../../tests/$NAME/$DATE
+mkdir -p ./$NAME/$DATE/
 
 cp -a $FILE ./$NAME/$DATE/
 
