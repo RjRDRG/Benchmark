@@ -23,7 +23,7 @@ spec:
         value: {{ .Values.group }}
         effect: "NoSchedule"
       nodeSelector:
-	group: {{ .Values.group }}
+        group: {{ .Values.group }}
       containers:
       - name: demo
         image: rjrdrg/robust_contract_evolution:reverse_{{ .Values.appVersion }}

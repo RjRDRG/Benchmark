@@ -5,7 +5,7 @@ set -o posix
 
 NAME="basic"
 CLEAN=false
-DURATION=60
+DURATION=300
 MIN_USERS=5
 MAX_USERS=50
 WORKERS=4
@@ -66,7 +66,7 @@ grep -RiIl "{{ my_test_job_name }}" | xargs sed -i "s|{{ my_test_job_name }}|$DA
 grep -RiIl "{{ my_test_job_duration }}" | xargs sed -i "s|{{ my_test_job_duration }}|$DURATION|g"
 grep -RiIl "{{ my_test_job_min_users }}" | xargs sed -i "s|{{ my_test_job_min_users }}|$MIN_USERS|g"
 grep -RiIl "{{ my_test_job_max_users }}" | xargs sed -i "s|{{ my_test_job_max_users }}|$MAX_USERS|g"
-grep -RiIl "{{ my_test_job_workers }}" | xargs sed -i "s|{{ my_test_job_max_users }}|$WORKERS|g"
+grep -RiIl "{{ my_test_job_workers }}" | xargs sed -i "s|{{ my_test_job_workers }}|$WORKERS|g"
 
 cd workload
 
