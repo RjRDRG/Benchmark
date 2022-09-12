@@ -1,6 +1,6 @@
 releases:
 - name: app1
-  namespace: apps
+  namespace: {{ my_test_job_name }}
   chart: ../../../../charts/ReverseAdapterDemoPod
   set:
   - name: group
@@ -24,7 +24,7 @@ releases:
   - name: limits.cpu
     value: 0.75
 - name: app2
-  namespace: apps
+  namespace: {{ my_test_job_name }}
   chart: ../../../../charts/ReverseAdapterDemoPod
   set:
   - name: group
@@ -48,7 +48,7 @@ releases:
   - name: limits.cpu
     value: 0.75
 - name: app3
-  namespace: apps
+  namespace: {{ my_test_job_name }}
   chart: ../../../../charts/ReverseAdapterDemoPod
   set:
   - name: group
@@ -72,7 +72,7 @@ releases:
   - name: limits.cpu
     value: 0.75
 - name: app4
-  namespace: apps
+  namespace: {{ my_test_job_name }}
   chart: ../../../../charts/ReverseAdapterDemoPod
   set:
   - name: group

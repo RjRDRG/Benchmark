@@ -1,3 +1,6 @@
 releases:
 - name: init
   chart: ../../../../charts/AppsNamespace
+  set:
+  - name: namespace
+    value: {{ my_test_job_name }}

@@ -1,6 +1,6 @@
 releases:
 - name: init
-  namespace: apps
+  namespace: {{ my_test_job_name }}
   chart: ../../../../charts/ReverseAdapterDemoInit
   set:
   - name: appsVersion
