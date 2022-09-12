@@ -3,6 +3,8 @@ releases:
   namespace: apps
   chart: ../../../../charts/ReverseAdapterDemoPod
   set:
+  - name: group
+    value: a
   - name: appName
     value: app1
   - name: appVersion
@@ -25,6 +27,8 @@ releases:
   namespace: apps
   chart: ../../../../charts/ReverseAdapterDemoPod
   set:
+  - name: group
+    value: a
   - name: appName
     value: app2
   - name: appVersion
@@ -47,6 +51,8 @@ releases:
   namespace: apps
   chart: ../../../../charts/ReverseAdapterDemoPod
   set:
+  - name: group
+    value: b
   - name: appName
     value: app3
   - name: appVersion
@@ -69,6 +75,8 @@ releases:
   namespace: apps
   chart: ../../../../charts/ReverseAdapterDemoPod
   set:
+  - name: group
+    value: b
   - name: appName
     value: app4
   - name: appVersion

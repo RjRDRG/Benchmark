@@ -17,6 +17,13 @@ spec:
         app: {{ .Values.appName }}
         version: {{ .Values.appVersion }}
     spec:
+      tolerations:
+      - key: "group"
+        operator: "Equal"
+        value: {{ .Values.group }}
+        effect: "NoSchedule"
+      nodeSelector:
+	group: {{ .Values.group }}
       containers:
       - name: demo
         image: rjrdrg/robust_contract_evolution:reverse_{{ .Values.appVersion }}

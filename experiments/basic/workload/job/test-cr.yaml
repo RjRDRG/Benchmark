@@ -10,7 +10,7 @@ metadata:
 
 spec:
   # Add fields here
-  count: 4
+  count: {{ my_test_job_workers }}
   testScript:
     config:
       configMap: test-script

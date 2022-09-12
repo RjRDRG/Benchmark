@@ -1,0 +1,4 @@
+kubectl get nodes
+
+kubectl taint nodes test-node- group=a:NoSchedule
+kubectl label nodes test-node- group=a
