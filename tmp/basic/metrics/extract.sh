@@ -2,8 +2,8 @@
 
 set -o errexit
 
-END=$(date --date="-{{ my_test_job_duration_buffer }} sec" --iso-8601="seconds")
-START=$(date --date="-$(({{ my_test_job_duration }} + {{ my_test_job_duration_buffer }})) sec" --iso-8601="seconds")
+END=$(date --iso-8601="seconds")
+START=$(date --date="-200 sec" --iso-8601="seconds")
 
 promql "$(sed -n 1p ./query.promql)" --host "http://localhost:9090" --start $START --end $END --step 5s --output csv > $1/cpu.csv
 promql "$(sed -n 2p ./query.promql)" --host "http://localhost:9090" --start $START --end $END --step 5s --output csv > $1/memory.csv
@@ -37,4 +37,4 @@ do
 
 done
 
-csvjoin --left -c timestamp $1/*.csv > $1/all.csv
+csvjoin --left -c timestamp $1/*.csv > all.csv

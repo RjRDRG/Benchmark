@@ -19,32 +19,28 @@ config:
         pushgateway: "http://prometheus-pushgateway.monitoring:9091"
         prefix: 'artillery_k8s'
         tags:
-          - "load_test_id:{{ my_test_job_name }}"
+          - "load_test_id:2022y09m12d-09h54m20s"
           - "type:loadtest"
   phases:
     - duration: 30
-      arrivalRate: {{ my_test_job_min_users }}
+      arrivalRate: 5
       name: Warm up
-    - duration: 60
-      arrivalRate: {{ my_test_job_min_users }}
-      rampTo: {{ my_test_job_max_users }}
-      name: Ramp up load
-    - duration: {{ my_test_job_duration }}
-      arrivalRate: {{ my_test_job_min_users }}
-      rampTo: {{ my_test_job_max_users }}
-      name: Sustained load
+    - duration: 200
+      arrivalRate: 5
+      rampTo: 50
+      name: Load
 scenarios:
   - name: "procedure"
     flow:
       - post:
           url: "/v0/demo"
           headers:
-            maxcalls: '{{ my_test_job_max_calls }}'
+            maxcalls: '2'
             calls: '1'
-            fanout: '{{ my_test_job_fanout }}'
+            fanout: '1'
           json:
-            p1_v0: "{{ my_test_job_payload }}"
-            p2_v0: "{{ my_test_job_payload }}"
-            p3_v0: "{{ my_test_job_payload }}"
-            p4_v0: "{{ my_test_job_payload }}"
-            p5_v0: "{{ my_test_job_payload }}"
+            p1_v0: "aaaaaaaaa"
+            p2_v0: "aaaaaaaaa"
+            p3_v0: "aaaaaaaaa"
+            p4_v0: "aaaaaaaaaa"
+            p5_v0: "aaaaaaaaaa"

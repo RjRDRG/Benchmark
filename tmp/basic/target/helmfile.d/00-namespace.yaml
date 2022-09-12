@@ -1,0 +1,3 @@
+releases:
+- name: init
+  chart: ../../../../charts/AppsNamespace

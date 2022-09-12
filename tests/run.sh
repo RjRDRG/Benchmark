@@ -3,48 +3,62 @@
 set -o errexit
 set -o posix
 
-NAME="basic"
 CLEAN=false
-DURATION=300
-MIN_USERS=5
-MAX_USERS=50
+FILE="./test.config"
+
+NAME="basic"
+DURATION=200
+DURATION_BUFFER=50
+MIN_USERS=10
+MAX_USERS=100
 WORKERS=4
 
-while getopts 'cn:d:m:M:w:' OPTION; do
+CALLS=2
+FANOUT=1
+PAYLOAD_SIZE=100
+
+while getopts 'cf:' OPTION; do
   case "$OPTION" in
     c)
-      CLEAN=false
+      CLEAN=true
       ;;
     n)
-      NAME="$OPTARG"
-      ;;
-    d)
-      DURATION="$OPTARG"
-      ;;
-    m)
-      MIN_USERS="$OPTARG"
-      ;;
-    M)
-      MAX_USERS="$OPTARG"
-      ;;
-    w)
-      WORKERS="$OPTARG"
+      FILE="$OPTARG"
       ;;
     ?)
-      echo "script usage: $(basename \$0) [-c] [-n experiment] [-d duration]" >&2
+      echo "script usage: $(basename \$0) [-c] [-f config_file]" >&2
       exit 1
       ;;
   esac
 done
 shift "$(($OPTIND -1))"
 
+source $FILE
 
+PAYLOAD=$(printf '=%.0s' $(seq 1 $(($PAYLOAD_SIZE / 5))))
 
+DATE=$(date +%Yy%mm%dd-%Hh%Mm%Ss)
+
+mkdir -p ../../../tests/$NAME/$DATE
+
+cp -a $FILE ./$NAME/$DATE/
 
 cp -a ../experiments/$NAME ../tmp/
 cd ../tmp/$NAME
 
 
+
+
+grep -RiIl "{{ my_test_job_name }}" | xargs sed -i "s|{{ my_test_job_name }}|$DATE|g"
+grep -RiIl "{{ my_test_job_duration }}" | xargs sed -i "s|{{ my_test_job_duration }}|$DURATION|g"
+grep -RiIl "{{ my_test_job_duration_buffer }}" | xargs sed -i "s|{{ my_test_job_duration_buffer }}|$DURATION_BUFFER|g"
+grep -RiIl "{{ my_test_job_min_users }}" | xargs sed -i "s|{{ my_test_job_min_users }}|$MIN_USERS|g"
+grep -RiIl "{{ my_test_job_max_users }}" | xargs sed -i "s|{{ my_test_job_max_users }}|$MAX_USERS|g"
+grep -RiIl "{{ my_test_job_workers }}" | xargs sed -i "s|{{ my_test_job_workers }}|$WORKERS|g"
+
+grep -RiIl "{{ my_test_job_max_calls }}" | xargs sed -i "s|{{ my_test_job_max_calls }}|$CALLS|g"
+grep -RiIl "{{ my_test_job_fanout }}" | xargs sed -i "s|{{ my_test_job_fanout }}|$FANOUT|g"
+grep -RiIl "{{ my_test_job_payload }}" | xargs sed -i "s|{{ my_test_job_payload }}|$PAYLOAD|g"
 
 
 cd target
@@ -59,15 +73,6 @@ cd ..
 
 
 
-
-DATE=$(date +%Yy%mm%dd-%Hh%Mm%Ss)
-
-grep -RiIl "{{ my_test_job_name }}" | xargs sed -i "s|{{ my_test_job_name }}|$DATE|g"
-grep -RiIl "{{ my_test_job_duration }}" | xargs sed -i "s|{{ my_test_job_duration }}|$DURATION|g"
-grep -RiIl "{{ my_test_job_min_users }}" | xargs sed -i "s|{{ my_test_job_min_users }}|$MIN_USERS|g"
-grep -RiIl "{{ my_test_job_max_users }}" | xargs sed -i "s|{{ my_test_job_max_users }}|$MAX_USERS|g"
-grep -RiIl "{{ my_test_job_workers }}" | xargs sed -i "s|{{ my_test_job_workers }}|$WORKERS|g"
-
 cd workload
 
 echo -e "\e[1;42m Deploying workload \e[0m"
@@ -80,17 +85,13 @@ cd ..
 
 
 
-
 cd metrics
-
-mkdir -p ../../../tests/$NAME/$DATE
 
 source ./extract.sh "../../../tests/$NAME/$DATE/"
 
 echo -e "\e[1;42m Metrics extracted \e[0m"
 
 cd ..
-
 
 
 
