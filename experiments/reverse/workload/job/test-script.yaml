@@ -27,7 +27,7 @@ config:
     - duration: 30
       arrivalRate: {{ my_test_job_min_users }}
       name: Warm up
-    - duration: 60
+    - duration: 120
       arrivalRate: {{ my_test_job_min_users }}
       rampTo: {{ my_test_job_max_users }}
       name: Ramp up load
