@@ -1,0 +1,7 @@
+docker
+helm
+helmfile
+kubectl
+promql-cli
+csvtools
+ggplot2

@@ -1,10 +1,12 @@
+alertmanager:
+  enabled: false
+  
 prometheus:
   prometheusSpec:
+    scrapeInterval: 5s
+    scrapeTimeout: 5s
     additionalScrapeConfigs:
     - job_name: pushgateway
       honor_labels: true
       static_configs:
       - targets: [prometheus-pushgateway:9091]
-  scrapeInterval: 5s
-  global:
-    scrape_interval: 5s

@@ -1,0 +1,6 @@
+releases:
+- name: init
+  chart: ../../../../charts/AppsNamespace
+  set:
+  - name: namespace
+    value: 2022y09m12d-15h07m15s

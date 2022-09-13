@@ -8,23 +8,11 @@ Cpu Usage:
 Memory Usage:
 	sum(container_memory_working_set_bytes{job="kubelet", metrics_path="/metrics/cadvisor", cluster="", namespace="apps",container!="", image!=""}) / sum(kube_pod_container_resource_limits{job="kube-state-metrics", cluster="", namespace="apps", resource="memory"})
 
-Bandwidth Received:
-	sum(irate(container_network_receive_bytes_total{cluster="", namespace="apps"}[2m30s]))
-
-Bandwidth Sent:
-	sum(irate(container_network_transmit_bytes_total{cluster="", namespace="apps"}[2m30s]))
-
 Thourghput:
         sum(artillery_k8s_rates{load_test_id=~"{{ my_test_job_name }}", metric=~"http_request_rate"})
 
 Timeouts:
 	sum(artillery_k8s_counters{load_test_id=~"{{ my_test_job_name }}", metric="errors_etimedout"})
-
-Requests:
-	sum(artillery_k8s_counters{load_test_id=~"{{ my_test_job_name }}", metric="http_requests"})
-
-Users:
-	sum(artillery_k8s_counters{load_test_id=~"{{ my_test_job_name }}", metric="vusers_created"})
 
 Latency min:
 	min(artillery_k8s_summaries{load_test_id=~"{{ my_test_job_name }}", metric="http_response_time_min"})
@@ -46,3 +34,25 @@ Latency p95:
 
 Latency p99:
 	avg(artillery_k8s_summaries{load_test_id=~"{{ my_test_job_name }}", metric="http_response_time_p99"})
+
+
+
+
+
+
+
+
+Not needed:
+
+Bandwidth Received:
+	sum(irate(container_network_receive_bytes_total{cluster="", namespace="apps"}[2m30s]))
+	sum(irate(node_network_receive_bytes_total{cluster="", namespace="apps"}[2m30s]))
+
+Bandwidth Sent:
+	sum(irate(container_network_transmit_bytes_total{cluster="", namespace="apps"}[2m30s]))
+
+Requests:
+	sum(artillery_k8s_counters{load_test_id=~"{{ my_test_job_name }}", metric="http_requests"})
+
+Users:
+	sum(artillery_k8s_counters{load_test_id=~"{{ my_test_job_name }}", metric="vusers_created"})

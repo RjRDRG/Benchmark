@@ -12,7 +12,7 @@
 # https://artillery.io/docs/guides/guides/test-script-reference.html#Scenario-weights
 
 config:
-  target: "http://entry.{{ my_test_job_name }}:80"
+  target: "http://entry.2022y09m12d-15h07m15s:80"
   http:
     timeout: 30
   plugins:
@@ -21,18 +21,18 @@ config:
         pushgateway: "http://prometheus-pushgateway.monitoring:9091"
         prefix: 'artillery_k8s'
         tags:
-          - "load_test_id:{{ my_test_job_name }}"
+          - "load_test_id:2022y09m12d-15h07m15s"
           - "type:loadtest"
   phases:
     - duration: 30
-      arrivalRate: {{ my_test_job_min_users }}
+      arrivalRate: 10
       name: Warm up
     - duration: 60
-      arrivalRate: {{ my_test_job_min_users }}
-      rampTo: {{ my_test_job_max_users }}
+      arrivalRate: 10
+      rampTo: 100
       name: Ramp up load
-    - duration: {{ my_test_job_duration }}
-      arrivalRate: {{ my_test_job_max_users }}
+    - duration: 300
+      arrivalRate: 100
       name: Sustained load
 scenarios:
   - name: "procedure"
@@ -40,12 +40,12 @@ scenarios:
       - post:
           url: "/v0/demo"
           headers:
-            maxcalls: '{{ my_test_job_max_calls }}'
+            maxcalls: '2'
             calls: '1'
-            fanout: '{{ my_test_job_fanout }}'
+            fanout: '1'
           json:
-            p1_v0: "{{ my_test_job_payload }}"
-            p2_v0: "{{ my_test_job_payload }}"
-            p3_v0: "{{ my_test_job_payload }}"
-            p4_v0: "{{ my_test_job_payload }}"
-            p5_v0: "{{ my_test_job_payload }}"
+            p1_v0: "===================="
+            p2_v0: "===================="
+            p3_v0: "===================="
+            p4_v0: "===================="
+            p5_v0: "===================="

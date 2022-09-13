@@ -1,16 +1,16 @@
 apiVersion: loadtest.artillery.io/v1alpha1
 kind: LoadTest
 metadata:
-  name: {{ my_test_job_name }}
-  namespace: load-{{ my_test_job_name }}
+  name: 2022y09m12d-15h07m15s
+  namespace: default
   labels:
-    "artillery.io/test-name": {{ my_test_job_name }}
+    "artillery.io/test-name": 2022y09m12d-15h07m15s
     "artillery.io/component": loadtest
     "artillery.io/part-of": loadtest
 
 spec:
   # Add fields here
-  count: {{ my_test_job_workers }}
+  count: 4
   testScript:
     config:
       configMap: test-script
