@@ -1,6 +1,15 @@
 alertmanager:
   enabled: false
   
+kubelet:
+  serviceMonitor:
+    interval: 5s
+prometheus-node-exporter:
+  prometheus:
+    monitor:
+      interval: 5s
+      scrapeTimeout: 5s
+  
 prometheus:
   prometheusSpec:
     scrapeInterval: 5s
@@ -8,5 +17,7 @@ prometheus:
     additionalScrapeConfigs:
     - job_name: pushgateway
       honor_labels: true
+      scrape_interval: 5s
+      scrape_timeout: 5s
       static_configs:
       - targets: [prometheus-pushgateway:9091]

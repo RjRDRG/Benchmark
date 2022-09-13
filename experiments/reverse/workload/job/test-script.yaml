@@ -24,10 +24,10 @@ config:
           - "load_test_id:{{ my_test_job_name }}"
           - "type:loadtest"
   phases:
-    - duration: 30
+    - duration: 10
       arrivalRate: {{ my_test_job_min_users }}
       name: Warm up
-    - duration: 60
+    - duration: 120
       arrivalRate: {{ my_test_job_min_users }}
       rampTo: {{ my_test_job_max_users }}
       name: Ramp up load

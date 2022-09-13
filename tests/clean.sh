@@ -13,7 +13,7 @@ source ./clean_target.sh
 cd ..
 
 cd workload
-source ./clean_workload.sh 
+source ./clean_workload.sh
 cd ..
 
 cd ..

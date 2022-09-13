@@ -17,6 +17,10 @@ CALLS=2
 FANOUT=1
 PAYLOAD_SIZE=100
 
+CPU=1.5
+MEMORY=3.5
+REPLICAS=1
+
 while getopts 'cf:' OPTION; do
   case "$OPTION" in
     c)
@@ -60,6 +64,10 @@ grep -RiIl "{{ my_test_job_max_calls }}" | xargs sed -i "s|{{ my_test_job_max_ca
 grep -RiIl "{{ my_test_job_fanout }}" | xargs sed -i "s|{{ my_test_job_fanout }}|$FANOUT|g"
 grep -RiIl "{{ my_test_job_payload }}" | xargs sed -i "s|{{ my_test_job_payload }}|$PAYLOAD|g"
 
+grep -RiIl "{{ my_test_job_limit_cpu }}" | xargs sed -i "s|{{ my_test_job_limit_cpu }}|$CPU|g"
+grep -RiIl "{{ my_test_job_limit_mem }}" | xargs sed -i "s|{{ my_test_job_limit_mem }}|$MEMORY|g"
+
+grep -RiIl "{{ my_test_job_replicas }}" | xargs sed -i "s|{{ my_test_job_replicas }}|$REPLICAS|g"
 
 cd target
 

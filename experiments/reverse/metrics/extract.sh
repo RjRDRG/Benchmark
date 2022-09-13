@@ -18,3 +18,19 @@ promql "$(sed -n 8p ./query.promql)" --host "http://localhost:9090" --start $STA
 promql "$(sed -n 9p ./query.promql)" --host "http://localhost:9090" --start $START --end $END --step 5s --output csv > $1/latency_p90.csv
 promql "$(sed -n 10p ./query.promql)" --host "http://localhost:9090" --start $START --end $END --step 5s --output csv > $1/latency_p95.csv
 promql "$(sed -n 11p ./query.promql)" --host "http://localhost:9090" --start $START --end $END --step 5s --output csv > $1/latency_p99.csv
+promql "$(sed -n 12p ./query.promql)" --host "http://localhost:9090" --start $START --end $END --step 5s --output csv > $1/bandwidth.csv
+
+for f in $1/*.csv
+do
+    # filename without path (on_time.txt)
+    filename=$(basename "$f")
+
+    # remove extension of filename (on_time)
+    filename_woext="${filename%.*}"
+
+    # replace all occurrences of "replace" with "on_time" in file
+    sed -i -e "s/value/$filename_woext/g" $1/$filename
+
+done
+
+csvjoin --left -c timestamp $1/*.csv > $1/all.csv

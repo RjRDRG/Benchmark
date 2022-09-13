@@ -22,8 +22,15 @@ spec:
         operator: "Equal"
         value: {{ .Values.group }}
         effect: "NoSchedule"
-      nodeSelector:
-        group: {{ .Values.group }}
+      affinity:
+    	nodeAffinity:
+      	  requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: group
+              operator: In
+              values:
+              - {{ .Values.group }}
       containers:
       - name: demo
         image: rjrdrg/robust_contract_evolution:reverse_{{ .Values.appVersion }}

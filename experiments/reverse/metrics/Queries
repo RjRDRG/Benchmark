@@ -1,4 +1,9 @@
 
+Objectives:
+
+Compare running adapter with no adapter
+
+
 Memory used   - 5gb of 7gb per server
 Compute power - 1.5 of 2 per server 
 
@@ -39,9 +44,6 @@ Latency p99:
 
 
 
-
-
-
 Not needed:
 
 Bandwidth Received:
@@ -56,3 +58,9 @@ Requests:
 
 Users:
 	sum(artillery_k8s_counters{load_test_id=~"{{ my_test_job_name }}", metric="vusers_created"})
+
+
+https://github.com/kubernetes/kubernetes/blob/master/test/instrumentation/testdata/stable-metrics-list.yaml
+
+Pending pods:
+        pending_pods{cluster="", namespace="apps"}
