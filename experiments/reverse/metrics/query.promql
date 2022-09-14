@@ -10,3 +10,10 @@ avg(artillery_k8s_summaries{load_test_id=~"{{ my_test_job_name }}", metric="http
 avg(artillery_k8s_summaries{load_test_id=~"{{ my_test_job_name }}", metric="http_response_time_p95"})
 avg(artillery_k8s_summaries{load_test_id=~"{{ my_test_job_name }}", metric="http_response_time_p99"})
 sum(irate(container_network_transmit_bytes_total{cluster="", namespace="{{ my_test_job_name }}"}[30s]))
+sum(artillery_k8s_counters{load_test_id=~"{{ my_test_job_name }}", metric="http_requests"})
+sum(artillery_k8s_counters{load_test_id=~"{{ my_test_job_name }}", metric="http_codes_200"})
+sum(artillery_k8s_counters{load_test_id=~"{{ my_test_job_name }}", metric="errors_econnreset"})
+sum(artillery_k8s_counters{load_test_id=~"{{ my_test_job_name }}", metric="vusers_completed"})
+sum(artillery_k8s_counters{load_test_id=~"{{ my_test_job_name }}", metric="vusers_created"})
+sum(artillery_k8s_counters{load_test_id=~"{{ my_test_job_name }}", metric="http_codes_500"})
+

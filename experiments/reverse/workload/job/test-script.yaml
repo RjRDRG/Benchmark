@@ -39,15 +39,15 @@ scenarios:
     flow:
       - loop:
         - post:
-          url: "/v0/demo"
-          headers:
-            maxcalls: '{{ my_test_job_max_calls }}'
-            calls: '1'
-            fanout: '{{ my_test_job_fanout }}'
-          json:
-            p1_v0: "{{ my_test_job_payload }}"
-            p2_v0: "{{ my_test_job_payload }}"
-            p3_v0: "{{ my_test_job_payload }}"
-            p4_v0: "{{ my_test_job_payload }}"
-            p5_v0: "{{ my_test_job_payload }}"
-        count: 5
+            url: "/v0/demo"
+            headers:
+              maxcalls: '{{ my_test_job_max_calls }}'
+              calls: '1'
+              fanout: '{{ my_test_job_fanout }}'
+            json:
+              p1_v0: "{{ my_test_job_payload }}"
+              p2_v0: "{{ my_test_job_payload }}"
+              p3_v0: "{{ my_test_job_payload }}"
+              p4_v0: "{{ my_test_job_payload }}"
+              p5_v0: "{{ my_test_job_payload }}"
+        count: 3

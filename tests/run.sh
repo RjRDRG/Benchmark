@@ -26,7 +26,7 @@ while getopts 'cf:' OPTION; do
     c)
       CLEAN=true
       ;;
-    n)
+    f)
       FILE="$OPTARG"
       ;;
     ?)
@@ -79,7 +79,7 @@ source ./wait_target.sh
 
 cd ..
 
-
+sleep 10s
 
 cd workload
 
@@ -116,5 +116,7 @@ if $CLEAN ; then
     cd ..
     rm -r ./$NAME
 fi
+
+cd ../tests
 
 
