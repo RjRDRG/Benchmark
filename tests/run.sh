@@ -18,8 +18,8 @@ FANOUT=1
 PAYLOAD_SIZE=100
 
 CPU=1.5
-MEMORY=3.5
-REPLICAS=1
+MEMORY=3500
+REPLICAS=2
 
 while getopts 'cf:' OPTION; do
   case "$OPTION" in

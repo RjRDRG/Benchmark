@@ -37,7 +37,8 @@ config:
 scenarios:
   - name: "procedure"
     flow:
-      - post:
+      - loop:
+        - post:
           url: "/v0/demo"
           headers:
             maxcalls: '{{ my_test_job_max_calls }}'
@@ -49,3 +50,4 @@ scenarios:
             p3_v0: "{{ my_test_job_payload }}"
             p4_v0: "{{ my_test_job_payload }}"
             p5_v0: "{{ my_test_job_payload }}"
+        count: 5

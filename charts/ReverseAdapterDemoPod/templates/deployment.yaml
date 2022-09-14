@@ -23,14 +23,14 @@ spec:
         value: {{ .Values.group }}
         effect: "NoSchedule"
       affinity:
-    	nodeAffinity:
-      	  requiredDuringSchedulingIgnoredDuringExecution:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
             nodeSelectorTerms:
             - matchExpressions:
               - key: group
-              operator: In
-              values:
-              - {{ .Values.group }}
+                operator: In
+                values:
+                - {{ .Values.group }}
       containers:
       - name: demo
         image: rjrdrg/robust_contract_evolution:reverse_{{ .Values.appVersion }}
@@ -40,33 +40,19 @@ spec:
         - name: TARGET_VERSION
           value: {{ .Values.appVersion }}
         - name: SERVER_PORT
-          value: "8080"
+          value: "80"
         ports:
-        - containerPort: 8080
+        - containerPort: 80
           name: {{ .Values.appVersion }}
-        resources:
-          requests:
-            memory: {{ divf .Values.requests.memory 2 }}M
-            cpu: {{ divf .Values.requests.cpu 2 }}
-          limits:
-            memory: {{ divf .Values.limits.memory 2 }}M
-            cpu: {{ divf .Values.limits.cpu 2 }}
       - name: adapter
         image: rjrdrg/robust_contract_evolution:reverse_adapter_{{ .Values.adapterVersion }}_{{ .Values.appVersion }}
         env:
         - name: TARGET_HOST
           value: "localhost"
         - name: TARGET_PORT
-          value: "8080"
+          value: "80"
         - name: SERVER_PORT
-          value: "8082"
+          value: "82"
         ports:
-        - containerPort: 8082
+        - containerPort: 82
           name: {{ .Values.adapterVersion }}
-        resources:
-          requests:
-            memory: {{ divf .Values.requests.memory 2 }}M
-            cpu: {{ divf .Values.requests.cpu 2 }}
-          limits:
-            memory: {{ divf .Values.limits.memory 2 }}M
-            cpu: {{ divf .Values.limits.cpu 2 }}
