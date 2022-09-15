@@ -1,0 +1,45 @@
+releases:
+- name: app1
+  namespace: {{ my_test_job_name }}
+  chart: ../../../../charts/SimpleDemoPod
+  set:
+  - name: group
+    value: a
+  - name: appName
+    value: app1
+  - name: appVersion
+    value: v0
+  - name: targetApps
+    value: app2
+  - name: requests.memory
+    value: 500
+  - name: limits.memory
+    value: {{ my_test_job_limit_mem }}
+  - name: requests.cpu
+    value: 0.1
+  - name: limits.cpu
+    value: {{ my_test_job_limit_cpu }}
+  - name: replicaCount
+    value: {{ my_test_job_replicas }}
+- name: app2
+  namespace: {{ my_test_job_name }}
+  chart: ../../../../charts/SimpleDemoPod
+  set:
+  - name: group
+    value: b
+  - name: appName
+    value: app2
+  - name: appVersion
+    value: v0
+  - name: targetApps
+    value: app1
+  - name: requests.memory
+    value: 500
+  - name: limits.memory
+    value: {{ my_test_job_limit_mem }}
+  - name: requests.cpu
+    value: 0.1
+  - name: limits.cpu
+    value: {{ my_test_job_limit_cpu }}
+  - name: replicaCount
+    value: {{ my_test_job_replicas }}

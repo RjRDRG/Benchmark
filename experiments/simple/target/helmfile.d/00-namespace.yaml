@@ -1,0 +1,6 @@
+releases:
+- name: {{ my_test_job_name }}
+  chart: ../../../../charts/AppsNamespace
+  set:
+  - name: namespace
+    value: {{ my_test_job_name }}

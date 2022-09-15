@@ -3,7 +3,7 @@
 set -o errexit
 set -o posix
 
-CLEAN=false
+CLEAN=true
 FILE="./test.config"
 
 NAME="reverse"
@@ -21,21 +21,7 @@ CPU=1.5
 MEMORY=3500
 REPLICAS=2
 
-while getopts 'cf:' OPTION; do
-  case "$OPTION" in
-    c)
-      CLEAN=true
-      ;;
-    f)
-      FILE="$OPTARG"
-      ;;
-    ?)
-      echo "script usage: $(basename \$0) [-c] [-f config_file]" >&2
-      exit 1
-      ;;
-  esac
-done
-shift "$(($OPTIND -1))"
+FILE=$1
 
 source $FILE
 
@@ -103,20 +89,23 @@ cd ..
 
 
 
-if $CLEAN ; then
-    echo -e "\e[1;42m Cleaning up experiment \e[0m"
-    cd target
-    source ./clean_target.sh
-    cd ..
+if $CLEAN 
+    then
+    	echo -e "\e[1;42m Cleaning up experiment \e[0m"
+    	cd target
+    	source ./clean_target.sh
+    	cd ..
 
-    cd workload
-    source ./clean_workload.sh 
-    cd ..
+    	cd workload
+    	source ./clean_workload.sh 
+    	cd ..
 
-    cd ..
-    rm -r ./$NAME
+    	cd ..
+    	rm -r ./$NAME
+
+    	cd ../tests
+    else
+	cd ../../tests
 fi
-
-cd ../tests
 
 

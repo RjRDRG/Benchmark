@@ -2,4 +2,4 @@
 
 set -o errexit
 
-kubectl wait --for=condition=complete job/{{ my_test_job_name }} --timeout=1000s
+kubectl wait --for=condition=complete job/{{ my_test_job_name }} --timeout=10000s

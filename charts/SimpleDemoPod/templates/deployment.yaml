@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.appName }}
+  labels:
+    app: {{ .Values.appName }}
+    version: {{ .Values.appVersion }} 
+    group: {{ .Values.group }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ .Values.appName }}
+      version: {{ .Values.appVersion }}
+      group: {{ .Values.group }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.appName }}
+        version: {{ .Values.appVersion }}
+        group: {{ .Values.group }}
+    spec:
+      tolerations:
+      - key: "group"
+        operator: "Equal"
+        value: {{ .Values.group }}
+        effect: "NoSchedule"
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: group
+                operator: In
+                values:
+                - {{ .Values.group }}
+      containers:
+      - name: demo
+        image: rjrdrg/robust_contract_evolution:reverse_{{ .Values.appVersion }}
+        env: 
+        - name: TARGET_APPS
+          value: {{ .Values.targetApps }}
+        - name: TARGET_VERSION
+          value: {{ .Values.appVersion }}
+        - name: SERVER_PORT
+          value: "80"
+        ports:
+        - containerPort: 80
+          name: {{ .Values.appVersion }}

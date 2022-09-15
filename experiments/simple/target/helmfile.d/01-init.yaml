@@ -1,0 +1,7 @@
+releases:
+- name: init
+  namespace: {{ my_test_job_name }}
+  chart: ../../../../charts/SimpleDemoInit
+  set:
+  - name: group
+    value: a

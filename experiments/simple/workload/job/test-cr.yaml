@@ -1,0 +1,16 @@
+apiVersion: loadtest.artillery.io/v1alpha1
+kind: LoadTest
+metadata:
+  name: {{ my_test_job_name }}
+  namespace: default
+  labels:
+    "artillery.io/test-name": {{ my_test_job_name }}
+    "artillery.io/component": loadtest
+    "artillery.io/part-of": loadtest
+
+spec:
+  # Add fields here
+  count: {{ my_test_job_workers }}
+  testScript:
+    config:
+      configMap: test-script
